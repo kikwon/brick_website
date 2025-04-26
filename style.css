@@ -1,56 +1,72 @@
+/* 페이지 전체 스타일 */
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
   text-align: center;
-  margin: 40px;
+}
+
+.container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+/* 검색어 입력창과 버튼 */
+input, button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 input {
   width: 300px;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
 }
 
 button {
-  padding: 12px 20px;
-  margin-left: 10px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  background-color: #0077ff;
+  background-color: #4CAF50;
   color: white;
   cursor: pointer;
+  border: none;
 }
 
 button:hover {
-  background-color: #0055cc;
+  background-color: #45a049;
 }
 
+/* 검색 결과 카드 스타일 */
 #results {
-  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
 .lego-card {
-  background-color: white;
+  background-color: #fff;
   border: 1px solid #ddd;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-  padding: 20px;
+  border-radius: 5px;
+  width: 250px;
   margin: 10px;
-  border-radius: 12px;
-  width: 220px;
-  transition: transform 0.2s;
-}
-
-.lego-card:hover {
-  transform: scale(1.05);
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 .lego-card img {
-  width: 100%;
-  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.lego-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.lego-card p {
+  font-size: 14px;
+  color: #555;
 }
