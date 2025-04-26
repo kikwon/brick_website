@@ -2,16 +2,21 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>LEGO 세트 검색기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lego Search</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="container">
+    <h1>Lego Set Search</h1>
 
-  <h1>🔎 LEGO 세트 검색</h1>
-  <input type="text" id="searchInput" placeholder="세트를 입력하세요..." autofocus>
-  <button id="searchBtn">검색</button>
-  <div id="results"></div>
+    <!-- 검색 입력창 -->
+    <input type="text" id="searchQuery" placeholder="검색어 입력 (예: Star Wars)">
+    <button onclick="handleSearch()">검색</button>
+
+    <!-- 검색 결과를 표시할 영역 -->
+    <div id="results"></div>
+  </div>
 
   <script src="app.js"></script>
 </body>
