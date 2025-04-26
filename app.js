@@ -1,19 +1,22 @@
 // API 키와 URL 설정
 const API_KEY = 'ca9d8006e5a8af186676e1f0bf656677'; // Rebrickable API 키를 여기에 입력하세요.
+let currentPage = 1;
+const pageSize = 50;  // 한 번에 불러올 최대 결과 수 (50개)
 
-// 검색 버튼 클릭 시 호출되는 함수
-function handleSearch() {
-  const query = document.getElementById('searchQuery').value; // 검색어 가져오기
-  if (query.trim() === '') {
-    alert('검색어를 입력하세요!');
+async function handleSearch() {
+  const query = document.getElementById('searchQuery').value.trim();
+  if (!query) {
+    alert("검색어를 입력해주세요.");
     return;
   }
-  searchLegoSets(query); // 검색 함수 호출
+
+  currentPage = 1; // 새 검색 시 첫 페이지로 리셋
+  searchLegoSets(query);  // 검색 함수 호출
 }
 
-// API 호출 및 데이터 받아오기
+// API에서 데이터 요청 후 결과를 처리하는 함수
 async function searchLegoSets(query) {
-  const url = `https://rebrickable.com/api/v3/lego/sets/?search=${encodeURIComponent(query)}&page_size=20`;
+  const url = `https://rebrickable.com/api/v3/lego/sets/?search=${encodeURIComponent(query)}&page_size=${pageSize}&page=${currentPage}`;
 
   try {
     const response = await fetch(url, {
@@ -23,14 +26,15 @@ async function searchLegoSets(query) {
     });
 
     if (!response.ok) {
-      throw new Error('API 요청 실패: ' + response.status);
+      throw new Error(`API 요청 실패: ${response.status}`);
     }
 
     const data = await response.json();
     console.log("🔵 API 응답 데이터:", data); // 응답 데이터 확인
-    displayResults(data.results); // 결과 표시 함수 호출
+    displayResults(data.results); // 검색 결과 화면에 출력
+    toggleNextPageButton(data.count); // "다음 페이지" 버튼 표시 여부 결정
   } catch (error) {
-    console.error('🔴 에러 발생:', error);
+    console.error("🔴 에러 발생:", error);
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = `<p>검색 중 에러가 발생했습니다. 다시 시도해주세요.</p>`;
   }
@@ -56,4 +60,19 @@ function displayResults(sets) {
     `;
     resultsDiv.appendChild(card);
   });
+}
+
+// "다음 페이지" 버튼을 표시할지 여부를 결정하는 함수
+function toggleNextPageButton(totalCount) {
+  const nextPageButton = document.getElementById('nextPageButton');
+  nextPageButton.style.display = (currentPage * pageSize < totalCount) ? 'block' : 'none';
+}
+
+// "다음 페이지" 버튼 클릭 시 호출되는 함수
+function nextPage() {
+  const query = document.getElementById('searchQuery').value.trim();
+  if (!query) return;
+
+  currentPage++;  // 페이지 증가
+  searchLegoSets(query);  // 다음 페이지 결과 불러오기
 }
