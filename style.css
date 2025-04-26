@@ -1,4 +1,4 @@
-/* 페이지 전체 스타일 */
+/* 기본 스타일 */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -12,7 +12,7 @@ body {
   margin: 20px auto;
 }
 
-/* 검색어 입력창과 버튼 */
+/* 검색 입력창과 버튼 스타일 */
 input, button {
   padding: 10px;
   font-size: 16px;
@@ -36,7 +36,7 @@ button:hover {
   background-color: #45a049;
 }
 
-/* 검색 결과 카드 스타일 */
+/* 검색 결과 스타일 */
 #results {
   display: flex;
   flex-wrap: wrap;
