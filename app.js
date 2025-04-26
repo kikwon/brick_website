@@ -13,7 +13,7 @@ function handleSearch() {
 
 // API 호출 및 데이터 받아오기
 async function searchLegoSets(query) {
-  const url = `https://rebrickable.com/api/v3/lego/sets/?search=${encodeURIComponent(query)}&page_size=10`;
+  const url = `https://rebrickable.com/api/v3/lego/sets/?search=${encodeURIComponent(query)}&page_size=20`;
 
   try {
     const response = await fetch(url, {
